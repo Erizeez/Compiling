@@ -1,4 +1,5 @@
 
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -197,7 +198,7 @@ public class Compiler {
 		this.clearToken();
 		while(this.isSpace() || this.isNewLine() || this.isTab()) {
 			if(!this.getchar()) {
-				break;
+				return 0;
 			}
 			//System.out.println("/eraseSpace");
 		}
