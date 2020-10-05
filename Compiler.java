@@ -253,7 +253,9 @@ public class Compiler {
 		
 		//System.out.println(compiler.inputString +"//all");
 		while(compiler.pos + 1 <= compiler.inputString.length()) {
-			compiler.getchar();
+			if(!compiler.getchar()) {
+				break;
+			}
 			//System.out.println(compiler.nowReadChar);
 			if(compiler.getsym() == -1) {
 				return;
