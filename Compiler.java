@@ -196,7 +196,9 @@ public class Compiler {
 	public int getsym() {
 		this.clearToken();
 		while(this.isSpace() || this.isNewLine() || this.isTab()) {
-			this.getchar();
+			if(!this.getchar()) {
+				break;
+			}
 			//System.out.println("/eraseSpace");
 		}
 		if(this.isLetter()) {
