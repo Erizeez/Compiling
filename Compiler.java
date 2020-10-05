@@ -1,5 +1,4 @@
 
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -221,7 +220,9 @@ public class Compiler {
 			this.num = this.transNum();
 			this.symbol = Symbol.INTSY;
 		}else if(this.isColon()) {
-			this.getchar();
+			if(!this.getchar()) {
+				return 0;
+			}
 			if(this.isEqu())	
 				this.symbol = Symbol.ASSIGNSY;
 			else {
