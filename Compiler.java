@@ -218,9 +218,10 @@ public class Compiler {
 			this.getchar();
 			if(this.isEqu())	
 				this.symbol = Symbol.ASSIGNSY;
-			else 
+			else {
 				retract();
-			this.symbol = Symbol.COLONSY;
+				this.symbol = Symbol.COLONSY;
+			}
 		}
 		else if(this.isPlus())	
 			this.symbol = Symbol.PLUSSY;
