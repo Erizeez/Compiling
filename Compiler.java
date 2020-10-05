@@ -252,7 +252,7 @@ public class Compiler {
 		compiler.readFile(args[0]);
 		
 		//System.out.println(compiler.inputString +"//all");
-		while(compiler.pos + 1 <= compiler.inputString.length()) {
+		while(compiler.pos + 1 < compiler.inputString.length()) {
 			if(!compiler.getchar()) {
 				break;
 			}
