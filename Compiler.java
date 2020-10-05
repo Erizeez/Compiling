@@ -198,7 +198,7 @@ public class Compiler {
 		this.clearToken();
 		while(this.isSpace() || this.isNewLine() || this.isTab()) {
 			if(!this.getchar()) {
-				return 0;
+				return -1;
 			}
 			//System.out.println("/eraseSpace");
 		}
@@ -223,13 +223,14 @@ public class Compiler {
 			this.num = this.transNum();
 			this.symbol = Symbol.INTSY;
 		}else if(this.isColon()) {
-			if(!this.getchar()) {
-				return 0;
-			}
-			if(this.isEqu())	
-				this.symbol = Symbol.ASSIGNSY;
-			else {
-				retract();
+			if(this.getchar()) {
+				if(this.isEqu())	
+					this.symbol = Symbol.ASSIGNSY;
+				else {
+					retract();
+					this.symbol = Symbol.COLONSY;
+				}
+			}else {
 				this.symbol = Symbol.COLONSY;
 			}
 		}
@@ -251,10 +252,12 @@ public class Compiler {
 		compiler.readFile(args[0]);
 		
 		//System.out.println(compiler.inputString +"//all");
-		while(compiler.pos + 1 < compiler.inputString.length()) {
+		while(compiler.pos + 1 <= compiler.inputString.length()) {
 			compiler.getchar();
 			//System.out.println(compiler.nowReadChar);
-			compiler.getsym();
+			if(compiler.getsym() == -1) {
+				return;
+			}
 			//System.out.println(compiler.token.toString() +"/now");
 			switch(compiler.symbol) {
 				case BEGINSY:
