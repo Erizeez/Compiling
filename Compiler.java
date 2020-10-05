@@ -1,4 +1,5 @@
 
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -185,6 +186,9 @@ public class Compiler {
 		}
 	}
 	public int transNum() {
+		while(this.token.charAt(0) == '0') {
+			this.token.deleteCharAt(0);
+		}
 		return Integer.parseInt(this.token.toString());
 	}
 	public void error() {
@@ -209,7 +213,9 @@ public class Compiler {
 		}else if(this.isDigit()) {
 			while(this.isDigit()) {
 				this.catToken();
-				this.getchar();
+				if(!this.getchar()) {
+					break;
+				}
 			}
 			this.retract();
 			this.num = this.transNum();
