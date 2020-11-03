@@ -1,4 +1,3 @@
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -77,10 +76,6 @@ public class Compiler {
 		boolean quitFlagAll = false;
 		while(true) {
 			if(!test.getChar()) {
-				System.out.println("E");
-				break;
-			}
-			if(test.relation[test.transferChar(test.signStack.peek())][test.transferChar(test.nowReadChar)] == -1) {
 				System.out.println("E");
 				break;
 			}
