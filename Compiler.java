@@ -113,7 +113,7 @@ public class Compiler {
 					break;
 				// null
 				case -1:
-					System.out.println("RE");
+					System.out.println("E");
 //					printStack(test.objectStack);
 //					printStack(test.signStack);
 					quitFlag = true;
@@ -126,6 +126,7 @@ public class Compiler {
 						quitFlagAll = true;
 						break;
 					}
+					System.out.println("I" + test.nowReadChar);
 					System.out.println("R");
 					test.signStack.pop();
 					quitFlag = true;
