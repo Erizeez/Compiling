@@ -23,6 +23,9 @@ public class Compiler {
 			 this.stringStack.push('#');
 			 this.signStack.push('#');
 			 for(int i = inputString.length() - 1; i >= 0; i--) {
+				 if(inputString.charAt(i) == ' ') {
+					 continue;
+				 }
 				 this.stringStack.push(inputString.charAt(i));
 			 }
 		} catch (IOException e) {
