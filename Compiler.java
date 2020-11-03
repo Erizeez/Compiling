@@ -39,10 +39,10 @@ public class Compiler {
 	}
 	public boolean getChar() {
 		this.nowReadChar = this.stringStack.pop();
-//		if(transferChar(this.nowReadChar) == 6) {
-//			System.out.println("error" + (int)this.nowReadChar +"end");
-//			return false;
-//		}
+		if(transferChar(this.nowReadChar) == 6) {
+			//System.out.println("error" + (int)this.nowReadChar +"end");
+			return false;
+		}
 		if(this.nowReadChar != '#') {
 			System.out.println("I" + this.nowReadChar);
 		}
