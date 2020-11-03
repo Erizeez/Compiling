@@ -60,6 +60,8 @@ public class Compiler {
 			return 4;
 		case '#':
 			return 5;
+		case 'i':
+			return 7;
 		default:
 			return 6;
 		}
