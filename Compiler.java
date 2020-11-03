@@ -113,6 +113,9 @@ public class Compiler {
 					break;
 				// null
 				case -1:
+					if(test.nowReadChar == '#') {
+						System.out.println("RE");
+					}else
 					System.out.println("E");
 //					printStack(test.objectStack);
 //					printStack(test.signStack);
