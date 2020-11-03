@@ -75,7 +75,7 @@ public class Compiler {
 	public static void main(String[] args) {
 		Compiler test = new Compiler();
 		test.readFile(args[0]);
-		printStack('|||' + test.stringStack + '|||');
+		//printStack('|||' + test.stringStack + '|||');
 		boolean quitFlag = false;
 		boolean quitFlagAll = false;
 		while(true) {
