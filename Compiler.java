@@ -23,6 +23,7 @@ public class Compiler {
 			 this.stringStack.push('#');
 			 this.signStack.push('#');
 			 for(int i = inputString.length() - 1; i >= 0; i--) {
+				System.out.print(inputString.charAt(i));
 				 if(inputString.charAt(i) == ' ') {
 					 continue;
 				 }
@@ -75,7 +76,7 @@ public class Compiler {
 	public static void main(String[] args) {
 		Compiler test = new Compiler();
 		test.readFile(args[0]);
-		printStack('|||' + test.stringStack + '|||');
+		//printStack('|||' + test.stringStack + '|||');
 		boolean quitFlag = false;
 		boolean quitFlagAll = false;
 		while(true) {
