@@ -43,15 +43,6 @@ public class Compiler {
 			//System.out.println("error" + (int)this.nowReadChar +"end");
 			return false;
 		}
-		if(this.nowReadChar != '#') {
-			System.out.println("I" + this.nowReadChar);
-		}
-		if(this.nowReadChar == 'i') {
-			System.out.println("R");
-			this.nowReadChar = 'N';
-		}else {
-			
-		}
 		return true;
 	}
 	public int transferChar(char c) {
@@ -60,7 +51,7 @@ public class Compiler {
 			return 0;
 		case '*':
 			return 1;
-		case 'N':
+		case 'i':
 			return 2;
 		case '(':
 			return 3;
@@ -68,8 +59,6 @@ public class Compiler {
 			return 4;
 		case '#':
 			return 5;
-		case 'i':
-			return 7;
 		default:
 			return 6;
 		}
@@ -85,27 +74,29 @@ public class Compiler {
 		boolean quitFlagAll = false;
 		while(true) {
 			if(!test.getChar()) {
-				System.out.println("E");
+				//System.out.println("E");
 				break;
 			}
-			if(test.nowReadChar == 'N') {
-				test.objectStack.push(test.nowReadChar);
-			}else {
-				int tempInt = test.transferChar(test.nowReadChar);
-				//System.out.println(tempInt+"test");
-				while(!test.signStack.empty()) {
-					quitFlag = false;
-					int tempInt2 = test.transferChar(test.signStack.peek());
-					//System.out.println(tempInt2+"test2");
-					//System.out.println(test.relation[tempInt2][tempInt]);
-					switch(test.relation[tempInt2][tempInt]) {
-					// <
-					case 0:
-						test.signStack.push(test.nowReadChar);
-						quitFlag = true;
-						break;
-					// >
-					case 1:
+			int tempInt = test.transferChar(test.nowReadChar);
+			//System.out.println(tempInt+"test");
+			while(!test.signStack.empty()) {
+				quitFlag = false;
+				int tempInt2 = test.transferChar(test.signStack.peek());
+				//System.out.println(tempInt2+"test2");
+				//System.out.println(test.relation[tempInt2][tempInt]);
+				switch(test.relation[tempInt2][tempInt]) {
+				// <
+				case 0:
+					System.out.println("I" + test.nowReadChar);
+					test.signStack.push(test.nowReadChar);
+					quitFlag = true;
+					break;
+				// >
+				case 1:
+					if(test.signStack.peek() == 'i') {
+						test.objectStack.push('N');
+						test.signStack.pop();
+					}else {
 						try {
 							test.objectStack.pop();
 							test.objectStack.pop();
@@ -117,33 +108,36 @@ public class Compiler {
 							quitFlagAll = true;
 							break;
 						}
-						System.out.println("R");
-						break;
-					// null
-					case -1:
-						System.out.println("RE");
-//						printStack(test.objectStack);
-//						printStack(test.signStack);
+					}
+					System.out.println("R");
+					break;
+				// null
+				case -1:
+					System.out.println("RE");
+//					printStack(test.objectStack);
+//					printStack(test.signStack);
+					quitFlag = true;
+					quitFlagAll = true;
+					break;
+				// =
+				case 2:
+					if(test.nowReadChar == '#') {
 						quitFlag = true;
 						quitFlagAll = true;
 						break;
-					// =
-					case 2:
-						if(test.nowReadChar == '#') {
-							quitFlag = true;
-							quitFlagAll = true;
-							break;
-						}
-						System.out.println("R");
-						test.signStack.pop();
-						quitFlag = true;
-						break;
 					}
-					if(quitFlag) {
-						break;
-					}
+					System.out.println("R");
+					test.signStack.pop();
+					quitFlag = true;
+					break;
+				}
+				if(quitFlag) {
+					break;
 				}
 			}
+			
+			
+			
 			
 			if(quitFlagAll) {
 				break;
