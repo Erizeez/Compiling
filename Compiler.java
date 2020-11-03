@@ -30,8 +30,11 @@ public class Compiler {
 		 e.printStackTrace();
 		}
 	}
-	public void getChar() {
+	public boolean getChar() {
 		this.nowReadChar = this.stringStack.pop();
+		if(transferChar(this.nowReadChar) == 6) {
+			return false;
+		}
 		if(this.nowReadChar != '#') {
 			System.out.println("I" + this.nowReadChar);
 		}
@@ -41,6 +44,7 @@ public class Compiler {
 		}else {
 			
 		}
+		return true;
 	}
 	public int transferChar(char c) {
 		switch(c) {
@@ -70,7 +74,10 @@ public class Compiler {
 		boolean quitFlag = false;
 		boolean quitFlagAll = false;
 		while(true) {
-			test.getChar();
+			if(!test.getChar()) {
+				System.out.println("E");
+				break;
+			}
 			if(test.relation[test.transferChar(test.signStack.peek())][test.transferChar(test.nowReadChar)] == -1) {
 				System.out.println("E");
 				break;
