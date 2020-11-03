@@ -27,7 +27,7 @@ public class Compiler {
 //			 }
 //			 System.out.println();
 			 for(int i = inputString.length() - 1; i >= 0; i--) {
-				 if(inputString.charAt(i) == ' ' || (int)inputString.charAt(i) == 13) {
+				 if(inputString.charAt(i) == ' ' || inputString.charAt(i) == '\r') {
 					 continue;
 				 }
 				 this.stringStack.push(inputString.charAt(i));
