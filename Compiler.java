@@ -77,7 +77,7 @@ public class Compiler {
 		boolean quitFlagAll = false;
 		while(true) {
 			if(!test.getChar()) {
-				System.out.println("");
+				System.out.println("E");
 				break;
 			}
 			if(test.nowReadChar == 'N') {
