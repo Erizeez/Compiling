@@ -27,10 +27,9 @@ public class Compiler {
 //			 }
 //			 System.out.println();
 			 for(int i = inputString.length() - 1; i >= 0; i--) {
-				 if(inputString.charAt(i) == ' ' || inputString.charAt(i) == '\r') {
-					 continue;
-				 }
-				 this.stringStack.push(inputString.charAt(i));
+				 if(inputString.charAt(i) == 'i' || inputString.charAt(i) == '+' || inputString.charAt(i) == '(' || inputString.charAt(i) == ')' || inputString.charAt(i) == '*') {
+					 this.stringStack.push(inputString.charAt(i));
+				 } 
 			 }
 		} catch (IOException e) {
 		 // TODO Auto-generated catch block
@@ -73,10 +72,7 @@ public class Compiler {
 		boolean quitFlag = false;
 		boolean quitFlagAll = false;
 		while(true) {
-			if(!test.getChar()) {
-				//System.out.println("E");
-				break;
-			}
+			test.getChar();
 			int tempInt = test.transferChar(test.nowReadChar);
 			//System.out.println(tempInt+"test");
 			while(!test.signStack.empty()) {
