@@ -44,6 +44,16 @@ public class Compiler {
 		}
 		return true;
 	}
+	public static int getStackLen(Stack<Character> ee) {
+		int temp = 0;
+		for(int i = 0; i < ee.size(); i++) {
+			if(ee.get(i) == '(' || ee.get(i) == ')') {
+				continue;
+			}
+			temp ++;
+		}
+		return temp;
+	}
 	public int transferChar(char c) {
 		switch(c) {
 		case '+':
@@ -98,6 +108,12 @@ public class Compiler {
 						test.signStack.pop();
 					}else {
 						try {
+							if(getStackLen(test.signStack) != test.objectStack.size()) {
+								System.out.println("RE");
+								quitFlag = true;
+								quitFlagAll = true;
+								break;
+							}
 							test.objectStack.pop();
 							test.objectStack.pop();
 							test.objectStack.push('N');
