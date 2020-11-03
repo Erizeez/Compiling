@@ -71,6 +71,10 @@ public class Compiler {
 		boolean quitFlagAll = false;
 		while(true) {
 			test.getChar();
+			if(test.relation[test.transferChar(test.signStack.peek())][test.transferChar(test.nowReadChar)] == -1) {
+				System.out.println("E");
+				break;
+			}
 			if(test.nowReadChar == 'N') {
 				test.objectStack.push(test.nowReadChar);
 			}else {
@@ -89,8 +93,17 @@ public class Compiler {
 						break;
 					// >
 					case 1:
-						test.objectStack.pop();
-						test.signStack.pop();
+						try {
+							test.objectStack.pop();
+							test.objectStack.pop();
+							test.objectStack.push('N');
+							test.signStack.pop();
+						}catch(Exception e) {
+							System.out.println("RE");
+							quitFlag = true;
+							quitFlagAll = true;
+							break;
+						}
 						System.out.println("R");
 						break;
 					// null
