@@ -27,7 +27,7 @@ public class Compiler {
 //			 }
 //			 System.out.println();
 			 for(int i = inputString.length() - 1; i >= 0; i--) {
-				 if(inputString.charAt(i) == ' ') {
+				 if(inputString.charAt(i) == ' ' || (int)inputString.charAt(i) == 13) {
 					 continue;
 				 }
 				 this.stringStack.push(inputString.charAt(i));
@@ -39,10 +39,10 @@ public class Compiler {
 	}
 	public boolean getChar() {
 		this.nowReadChar = this.stringStack.pop();
-		if(transferChar(this.nowReadChar) == 6) {
-			System.out.println("error" + (int)this.nowReadChar +"end");
-			return false;
-		}
+//		if(transferChar(this.nowReadChar) == 6) {
+//			System.out.println("error" + (int)this.nowReadChar +"end");
+//			return false;
+//		}
 		if(this.nowReadChar != '#') {
 			System.out.println("I" + this.nowReadChar);
 		}
