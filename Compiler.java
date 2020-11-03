@@ -10,7 +10,6 @@ public class Compiler {
 	public Stack<Character> objectStack = new Stack<Character>();
 	public Stack<Character> signStack = new Stack<Character>();
 	public Stack<Character> stringStack = new Stack<Character>();
-	public boolean lastIsI = false;
 	int[][] relation = {{1, 0, 0, 0, 1, 1}, {1, 1, 0, 0, 1, 1}, {1, 1, -1, -1, 1, 1}, {0, 0, 0, 0, 2, -1}, {1, 1, -1, -1, 1, 1}, {0, 0, 0, 0, -1, 2}};
 	public void readFile(String inSource) {
 		File file = new File(inSource);
@@ -31,38 +30,16 @@ public class Compiler {
 		 e.printStackTrace();
 		}
 	}
-	public boolean getChar() {
+	public void getChar() {
 		this.nowReadChar = this.stringStack.pop();
 		if(this.nowReadChar != '#') {
-			if(this.nowReadChar == 'i') {
-				if(lastIsI)
-					return false;
-			}else {
-				if(!lastIsI) {
-					return false;
-				}	
-			}
 			System.out.println("I" + this.nowReadChar);
 		}
 		if(this.nowReadChar == 'i') {
-			if(lastIsI)
-				return false;
-			else {
-				System.out.println("R");
-				this.nowReadChar = 'N';
-				lastIsI = true;
-				return true;
-			}
+			System.out.println("R");
+			this.nowReadChar = 'N';
 		}else {
-			if(!lastIsI) {
-				return false;
-			}
-				
-			else {
-				lastIsI = false;
-				return true;
-			}
-				
+			
 		}
 	}
 	public int transferChar(char c) {
@@ -93,10 +70,7 @@ public class Compiler {
 		boolean quitFlag = false;
 		boolean quitFlagAll = false;
 		while(true) {
-			if(!test.getChar()) {
-				System.out.println("E");
-				break;
-			}
+			test.getChar();
 			if(test.nowReadChar == 'N') {
 				test.objectStack.push(test.nowReadChar);
 			}else {
@@ -135,6 +109,7 @@ public class Compiler {
 							break;
 						}
 						System.out.println("R");
+						test.signStack.pop();
 						quitFlag = true;
 						break;
 					}
