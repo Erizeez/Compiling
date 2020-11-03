@@ -22,10 +22,10 @@ public class Compiler {
 			 String inputString = new String(buffer,"GB2312");
 			 this.stringStack.push('#');
 			 this.signStack.push('#');
-			 for(int i = 0; i < inputString.length(); i++) {
-				 System.out.print(inputString.charAt(i));
-			 }
-			 System.out.println();
+//			 for(int i = 0; i < inputString.length(); i++) {
+//				 System.out.print(inputString.charAt(i));
+//			 }
+//			 System.out.println();
 			 for(int i = inputString.length() - 1; i >= 0; i--) {
 				 if(inputString.charAt(i) == ' ') {
 					 continue;
@@ -40,6 +40,7 @@ public class Compiler {
 	public boolean getChar() {
 		this.nowReadChar = this.stringStack.pop();
 		if(transferChar(this.nowReadChar) == 6) {
+			System.out.println("error" + this.nowReadChar);
 			return false;
 		}
 		if(this.nowReadChar != '#') {
